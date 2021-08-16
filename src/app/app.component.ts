@@ -10,8 +10,32 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'reservation-app';
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient) {
+    this.rooms = [];
+  }
 
   private baseUrl:string = 'http://localhost::8080';
   private reservationUrl:string = this.baseUrl + '/room/v1/reservation/';
+
+  rooms: Room[];
+
+  ngOnInit() {
+    this.rooms = [
+      new Room("123", "123", "150"),
+      new Room("135", "145", "180"),
+      new Room("254", "254", "200"),
+    ];
+  }
+}
+
+export class Room {
+  id: string;
+  roomNumber: string;
+  price: string;
+
+  constructor(id: string, roomNumber: string, price:string) {
+    this.id = id;
+    this.roomNumber = roomNumber;
+    this.price = price;
+  }
 }
